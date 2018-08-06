@@ -31,6 +31,12 @@ class Calculator extends Component {
   setOperation(operator) {
     let current = this.state.current
 
+    if (this.state.operator && operator !== this.state.operator) {
+      this.setState({ operator })
+      this.showResult()
+      return
+    }
+
     if (this.state.isDisplayResult) {
       const value = parseFloat(this.state.displayValue)
       current = 0
@@ -80,7 +86,7 @@ class Calculator extends Component {
 
     this.setState({
       displayValue: result,
-      values: [],
+      values: [result],
       clearDisplay: true,
       isDisplayResult: true
     })
