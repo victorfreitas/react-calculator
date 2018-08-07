@@ -92,6 +92,21 @@ class Calculator extends Component {
     })
   }
 
+  calcPercentage() {
+    const { operator: op, values: [ amount, perc ] } = this.state
+
+    if (!op) {
+      return
+    }
+
+    const displayValue = operations[op](amount, (amount / 100) * perc)
+
+    this.setState({
+      ...initialState,
+      displayValue
+    })
+  }
+
   handleClick({ name, type }) {
     switch (type) {
       case 'clear':
@@ -104,6 +119,10 @@ class Calculator extends Component {
 
       case 'result':
         this.showResult()
+        break
+
+      case 'perc':
+        this.calcPercentage()
         break
 
       default:

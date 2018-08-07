@@ -1,5 +1,6 @@
 export const btnLabels = [
-  {name: 'AC', class: 'triple', type: 'clear'},
+  {name: 'AC', class: 'double', type: 'clear'},
+  {name: '%', class: '', type: 'perc'},
   {name: '/', class: 'operator', type: 'operation'},
   {name: '7', class: '', type: ''},
   {name: '8', class: '', type: ''},
