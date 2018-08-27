@@ -2,7 +2,7 @@
   "name": "react-calculator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/victorfreitas/react-calculator",
+  "homepage" : "http://victorfreitas.github.io/react-calculator",
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
