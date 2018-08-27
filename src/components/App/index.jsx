@@ -1,22 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import './style.css'
 
-import Button from '../Button'
-import Display from '../Display'
+import Title from '../Title'
+import Container from './Container'
 
-import { btnLabels, operations, formatNumber } from '../../helpers'
+import { operations } from '../../helpers'
+import initialState from './initialState'
 
-const initialState = {
-  displayValue: '0',
-  clearDisplay: false,
-  operator: null,
-  values: [],
-  isDisplayResult: false,
-  current: 0
-}
-
-class Calculator extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
 
@@ -28,17 +20,17 @@ class Calculator extends Component {
     this.setState({ ...initialState })
   }
 
-  setOperation(operator) {
-    let current = this.state.current
+  setOperation(op) {
+    let { current, operator, isDisplayResult, displayValue } = this.state
 
-    if (this.state.operator && operator !== this.state.operator) {
-      this.setState({ operator })
+    if (operator && op !== operator) {
+      this.setState({ operator: op })
       this.showResult()
       return
     }
 
-    if (this.state.isDisplayResult) {
-      const value = parseFloat(this.state.displayValue)
+    if (isDisplayResult) {
+      const value = parseFloat(displayValue)
       current = 0
       this.setState({ values: [value] })
     }
@@ -46,54 +38,52 @@ class Calculator extends Component {
     current++
     this.setState({
       current,
-      operator,
+      operator: op,
       clearDisplay: true,
-      isDisplayResult: false
+      isDisplayResult: false,
     })
   }
 
   addDigit(n) {
-    if (n === '.' && this.state.displayValue.includes('.')) {
+    const { current, displayValue, clearDisplay, values } = this.state
+
+    if (n === '.' && displayValue.includes('.')) {
       return
     }
 
-    const clearDisplay = (this.state.displayValue === '0' || this.state.clearDisplay)
-    const currentValue = clearDisplay ? '' : this.state.displayValue
-    const displayValue = currentValue + n
+    const clear = displayValue === '0' || clearDisplay
+    const value = (clear ? '' : displayValue) + n
 
     if (n !== '.') {
-      const i = this.state.current
-      const newValue = parseFloat(displayValue)
-      const values = [...this.state.values]
-
-      values[i] = newValue
-
+      values[current] = parseFloat(value)
       this.setState({ values })
     }
 
-    this.setState({ displayValue, clearDisplay: false })
+    this.setState({ displayValue: value, clearDisplay: false })
   }
 
   showResult() {
-    const op = this.state.operator
+    const { operator: op, values } = this.state
 
-    if (!op || this.state.values.length < 2) {
+    if (!op || values.length < 2) {
       return
     }
 
-    const values = [...this.state.values]
-    const result = values.reduce((a, b) => operations[op](a, b))
+    const result = [...values].reduce((a, b) => operations[op](a, b))
 
     this.setState({
       displayValue: result,
       values: [result],
       clearDisplay: true,
-      isDisplayResult: true
+      isDisplayResult: true,
     })
   }
 
   calcPercentage() {
-    const { operator: op, values: [ amount, perc ] } = this.state
+    const {
+      operator: op,
+      values: [amount, perc],
+    } = this.state
 
     if (!op) {
       return
@@ -103,7 +93,7 @@ class Calculator extends Component {
 
     this.setState({
       ...initialState,
-      displayValue
+      displayValue,
     })
   }
 
@@ -130,26 +120,16 @@ class Calculator extends Component {
     }
   }
 
-  renderButtons() {
-    return (
-      btnLabels.map(label => (
-        <Button
-          key={label.name}
-          label={label}
-          click={this.handleClick}
-        />
-      ))
-    )
-  }
-
   render() {
+    const { displayValue } = this.state
+
     return (
-      <div className='calculator'>
-       <Display value={formatNumber(this.state.displayValue)} />
-       {this.renderButtons()}
-      </div>
+      <Fragment>
+        <Title title="Calculator" />
+        <Container value={displayValue} click={this.handleClick} />
+      </Fragment>
     )
   }
 }
 
-export default Calculator
+export default App

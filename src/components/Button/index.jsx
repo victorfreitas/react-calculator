@@ -2,11 +2,13 @@ import React from 'react'
 
 import './style.css'
 
-export default props => (
+const Button = ({ click, label }) => (
   <button
-    className={`btn ${props.label.class}`}
-    onClick={() => props.click && props.click(props.label)}
+    className={`btn ${label.class}`}
+    onClick={() => click && click(label)}
   >
-    {props.label.name}
+    {label.name}
   </button>
 )
+
+export default Button
