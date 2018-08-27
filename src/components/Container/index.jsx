@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Display from '../Display'
 import Buttons from '../Buttons'
@@ -11,5 +12,10 @@ const Container = ({ value, click }) => (
     <Buttons click={click} />
   </div>
 )
+
+Container.propTypes = {
+  value: PropTypes.string.isRequired,
+  click: PropTypes.func.isRequired,
+}
 
 export default Container

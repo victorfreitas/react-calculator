@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 import './style.css'
 
 import Title from '../Title'
-import Container from './Container'
+import Container from '../Container'
 
 import { operations } from '../../helpers'
 import initialState from './initialState'
