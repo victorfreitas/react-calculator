@@ -28,5 +28,6 @@ export const operations = {
 
 export const parseNumber = value => value.replace(/[^\d]+/g, '')
 
-export const formatNumber = value =>
+export const formatNumber = value => (
   new Intl.NumberFormat('en-US').format(parseFloat(value))
+)

@@ -14,7 +14,10 @@ const Container = ({ value, click }) => (
 )
 
 Container.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   click: PropTypes.func.isRequired,
 }
 

@@ -13,11 +13,21 @@ class App extends Component {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
-    this.state = { ...initialState }
+    this.calc = this.calc.bind(this)
+
+    this.state = {
+      ...initialState,
+    }
   }
 
   clearMemory() {
     this.setState({ ...initialState })
+  }
+
+  calc(a, b) {
+    const { operator } = this.state
+
+    return operations[operator](a, b)
   }
 
   setOperation(op) {
@@ -32,10 +42,12 @@ class App extends Component {
     if (isDisplayResult) {
       const value = parseFloat(displayValue)
       current = 0
+
       this.setState({ values: [value] })
     }
 
     current++
+
     this.setState({
       current,
       operator: op,
@@ -52,24 +64,27 @@ class App extends Component {
     }
 
     const clear = displayValue === '0' || clearDisplay
-    const value = (clear ? '' : displayValue) + n
+    const value = `${clear ? '' : displayValue}${n}`
 
     if (n !== '.') {
       values[current] = parseFloat(value)
       this.setState({ values })
     }
 
-    this.setState({ displayValue: value, clearDisplay: false })
+    this.setState({
+      displayValue: value,
+      clearDisplay: false,
+    })
   }
 
   showResult() {
-    const { operator: op, values } = this.state
+    const { operator, values } = this.state
 
-    if (!op || values.length < 2) {
+    if (!operator || values.length < 2) {
       return
     }
 
-    const result = [...values].reduce((a, b) => operations[op](a, b))
+    const result = [...values].reduce(this.calc)
 
     this.setState({
       displayValue: result,
@@ -80,16 +95,13 @@ class App extends Component {
   }
 
   calcPercentage() {
-    const {
-      operator: op,
-      values: [amount, perc],
-    } = this.state
+    const { operator, values: [amount, perc] } = this.state
 
-    if (!op) {
+    if (!operator) {
       return
     }
 
-    const displayValue = operations[op](amount, (amount / 100) * perc)
+    const displayValue = this.calc(amount, (amount / 100) * perc)
 
     this.setState({
       ...initialState,
@@ -126,7 +138,10 @@ class App extends Component {
     return (
       <Fragment>
         <Title title="Calculator" />
-        <Container value={displayValue} click={this.handleClick} />
+        <Container
+          value={displayValue}
+          click={this.handleClick}
+        />
       </Fragment>
     )
   }
