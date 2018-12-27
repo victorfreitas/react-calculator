@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
 
 const Display = ({ value }) => (
-  <div className="display">{value}</div>
+  <div className="display">
+    {value}
+  </div>
 )
 
 Display.propTypes = {
   value: PropTypes.string.isRequired,
 }
 
-export default Display
+export default memo(Display)

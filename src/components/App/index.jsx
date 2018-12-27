@@ -1,37 +1,36 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import './style.css'
 
+import initialState from './initialState'
+import { operations } from '../../helpers'
 import Title from '../Title'
 import Container from '../Container'
 
-import { operations } from '../../helpers'
-import initialState from './initialState'
-
 class App extends Component {
-  constructor(props) {
-    super(props)
+  state = { ...initialState }
 
-    this.handleClick = this.handleClick.bind(this)
-    this.calc = this.calc.bind(this)
-
-    this.state = {
-      ...initialState,
-    }
+  componentDidMount() {
+    document.addEventListener('btnclick', this.handleClick)
   }
 
   clearMemory() {
     this.setState({ ...initialState })
   }
 
-  calc(a, b) {
+  calc = (a, b) => {
     const { operator } = this.state
 
     return operations[operator](a, b)
   }
 
   setOperation(op) {
-    let { current, operator, isDisplayResult, displayValue } = this.state
+    let {
+      current,
+      operator,
+      isDisplayResult,
+      displayValue,
+    } = this.state
 
     if (operator && op !== operator) {
       this.setState({ operator: op })
@@ -57,7 +56,12 @@ class App extends Component {
   }
 
   addDigit(n) {
-    const { current, displayValue, clearDisplay, values } = this.state
+    const {
+      current,
+      displayValue,
+      clearDisplay,
+      values,
+    } = this.state
 
     if (n === '.' && displayValue.includes('.')) {
       return
@@ -101,15 +105,12 @@ class App extends Component {
       return
     }
 
-    const displayValue = this.calc(amount, (amount / 100) * perc)
-
     this.setState({
-      ...initialState,
-      displayValue,
+      displayValue: this.calc(amount, (amount / 100) * perc),
     })
   }
 
-  handleClick({ name, type }) {
+  handleClick = ({ detail: { type, name } }) => {
     switch (type) {
       case 'clear':
         this.clearMemory()
@@ -136,13 +137,10 @@ class App extends Component {
     const { displayValue } = this.state
 
     return (
-      <Fragment>
-        <Title title="Calculator" />
-        <Container
-          value={displayValue}
-          click={this.handleClick}
-        />
-      </Fragment>
+      <div className="calculator">
+        <Title />
+        <Container value={displayValue} />
+      </div>
     )
   }
 }

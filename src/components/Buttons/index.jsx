@@ -1,18 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { memo } from 'react'
 
+import labels from '../../helpers/labels'
 import Button from '../Button'
 
-import { btnLabels } from '../../helpers'
-
-const Buttons = ({ click }) => (
-  btnLabels.map(label => (
-    <Button key={label.name} label={label} click={click} />
+const Buttons = () => (
+  labels.map(label => (
+    <Button
+      key={label.name}
+      label={label}
+    />
   ))
 )
 
-Buttons.propTypes = {
-  click: PropTypes.func.isRequired,
-}
-
-export default Buttons
+export default memo(Buttons)

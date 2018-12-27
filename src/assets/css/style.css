@@ -5,15 +5,16 @@
 
 * {
   font-family: 'RobotoMono', monospace;
+  margin: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 body {
   align-items: center;
-  background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
+  background: #2f2f2f;
   color: #fff;
   display: flex;
   height: 100vh;
   justify-content: center;
-  text-align: center;
 }

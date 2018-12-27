@@ -1,23 +1,28 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
 
-const Button = ({ click, label }) => (
+const Button = ({ label }) => (
   <button
     className={`btn ${label.class}`}
-    onClick={() => click && click(label)}
+    onClick={(event) => {
+      event.preventDefault()
+      document.dispatchEvent(
+        new CustomEvent('btnclick', { detail: label })
+      )
+    }}
   >
     {label.name}
   </button>
 )
 
 Button.propTypes = {
-  click: PropTypes.func.isRequired,
   label: PropTypes.shape({
     class: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }).isRequired,
 }
 
-export default Button
+export default memo(Button)

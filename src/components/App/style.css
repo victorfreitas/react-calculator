@@ -2,8 +2,8 @@
   border-radius: 5px;
   display: grid;
   grid-template-columns: repeat(4, 25%);
-  grid-template-rows: 1fr 48px 48px 48px 48px 48px;
-  height: 320px;
+  grid-template-rows: 1fr repeat(6, 48px);
+  height: auto;
   overflow: hidden;
-  width: 235px;
+  width: 250px;
 }

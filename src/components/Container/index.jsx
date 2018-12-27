@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { Fragment, memo } from 'react'
 import PropTypes from 'prop-types'
 
+import { formatNumber } from '../../helpers'
 import Display from '../Display'
 import Buttons from '../Buttons'
 
-import { formatNumber } from '../../helpers'
-
-const Container = ({ value, click }) => (
-  <div className="calculator">
+const Container = ({ value }) => (
+  <Fragment>
     <Display value={formatNumber(value)} />
-    <Buttons click={click} />
-  </div>
+    <Buttons />
+  </Fragment>
 )
 
 Container.propTypes = {
@@ -18,7 +17,6 @@ Container.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
-  click: PropTypes.func.isRequired,
 }
 
-export default Container
+export default memo(Container)
