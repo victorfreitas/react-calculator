@@ -34,7 +34,7 @@ class App extends Component {
 
     if (operator && op !== operator) {
       this.setState({ operator: op })
-      this.showResult(op)
+      this.showResult()
       return
     }
 
@@ -83,7 +83,7 @@ class App extends Component {
     })
   }
 
-  showResult(op) {
+  showResult() {
     const { operator, values } = this.state
 
     if (!operator || values.length < 2) {
@@ -98,7 +98,7 @@ class App extends Component {
       values: [result],
       clearDisplay: true,
       isDisplayResult: true,
-      hat: `${values.join(` ${op || operator} `)} =`,
+      hat: `${values.join(` ${operator} `)} =`,
     })
   }
 
