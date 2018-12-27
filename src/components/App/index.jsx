@@ -26,13 +26,13 @@ class App extends Component {
 
   setOperation(op) {
     let {
-      current,
+      index,
       operator,
       isDisplayResult,
       displayValue,
     } = this.state
 
-    if (operator && op !== operator) {
+    if (operator) {
       this.setState({ operator: op })
       this.showResult()
       return
@@ -40,15 +40,15 @@ class App extends Component {
 
     if (isDisplayResult) {
       const value = parseFloat(displayValue)
-      current = 0
+      index = 0
 
       this.setState({ values: [value] })
     }
 
-    current++
+    index++
 
     this.setState({
-      current,
+      index,
       operator: op,
       clearDisplay: true,
       isDisplayResult: false,
@@ -57,7 +57,7 @@ class App extends Component {
 
   addDigit(n) {
     const {
-      current,
+      index,
       displayValue,
       clearDisplay,
       values,
@@ -72,7 +72,7 @@ class App extends Component {
 
     if (n !== '.') {
       const cloneValues = [...values]
-      cloneValues[current] = parseFloat(value)
+      cloneValues[index] = parseFloat(value)
 
       this.setState({ values: cloneValues.filter(v => !isNaN(v)) })
     }
@@ -83,6 +83,17 @@ class App extends Component {
     })
   }
 
+  setStateResult(hat, result) {
+    this.setState({
+      hat,
+      index: 1,
+      displayValue: result,
+      values: [result],
+      clearDisplay: true,
+      isDisplayResult: true,
+    })
+  }
+
   showResult() {
     const { operator, values } = this.state
 
@@ -90,29 +101,21 @@ class App extends Component {
       return
     }
 
-    const result = [...values].reduce(this.calc)
-
-    this.setState({
-      current: 1,
-      displayValue: result,
-      values: [result],
-      clearDisplay: true,
-      isDisplayResult: true,
-      hat: `${values.join(` ${operator} `)} =`,
-    })
+    this.setStateResult(
+      `${values.join(` ${operator} `)} =`,
+      [...values].reduce(this.calc)
+    )
   }
 
   calcPercentage() {
     const { operator, values: [amount, perc] } = this.state
 
-    if (!operator) {
-      return
+    if (operator) {
+      this.setStateResult(
+        `${amount} ${operator} ${perc}% =`,
+        this.calc(amount, (amount / 100) * perc)
+      )
     }
-
-    this.setState({
-      hat: `${amount} ${operator} ${perc}% =`,
-      displayValue: this.calc(amount, (amount / 100) * perc),
-    })
   }
 
   handleClick = ({ detail: { type, name } }) => {
