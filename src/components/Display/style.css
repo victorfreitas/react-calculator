@@ -9,3 +9,16 @@
   overflow: hidden;
   padding: 20px;
 }
+
+.display-calc {
+  align-items: center;
+  background: #ff8100;
+  border-bottom: 1px solid #d26d07;
+  color: #48474f;
+  display: flex;
+  font-size: 12px;
+  font-weight: bolder;
+  grid-column: span 4;
+  justify-content: flex-end;
+  padding: 0 6px 0 0;
+}

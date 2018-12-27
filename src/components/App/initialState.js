@@ -5,4 +5,5 @@ export default {
   values: [],
   isDisplayResult: false,
   current: 0,
+  hat: '',
 }

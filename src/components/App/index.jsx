@@ -34,7 +34,7 @@ class App extends Component {
 
     if (operator && op !== operator) {
       this.setState({ operator: op })
-      this.showResult()
+      this.showResult(op)
       return
     }
 
@@ -71,8 +71,10 @@ class App extends Component {
     const value = `${clear ? '' : displayValue}${n}`
 
     if (n !== '.') {
-      values[current] = parseFloat(value)
-      this.setState({ values })
+      const cloneValues = [...values]
+      cloneValues[current] = parseFloat(value)
+
+      this.setState({ values: cloneValues.filter(v => !isNaN(v)) })
     }
 
     this.setState({
@@ -81,7 +83,7 @@ class App extends Component {
     })
   }
 
-  showResult() {
+  showResult(op) {
     const { operator, values } = this.state
 
     if (!operator || values.length < 2) {
@@ -91,10 +93,12 @@ class App extends Component {
     const result = [...values].reduce(this.calc)
 
     this.setState({
+      current: 1,
       displayValue: result,
       values: [result],
       clearDisplay: true,
       isDisplayResult: true,
+      hat: `${values.join(` ${op || operator} `)} =`,
     })
   }
 
@@ -106,6 +110,7 @@ class App extends Component {
     }
 
     this.setState({
+      hat: `${amount} ${operator} ${perc}% =`,
       displayValue: this.calc(amount, (amount / 100) * perc),
     })
   }
@@ -134,12 +139,15 @@ class App extends Component {
   }
 
   render() {
-    const { displayValue } = this.state
+    const { displayValue, hat } = this.state
 
     return (
       <div className="calculator">
         <Title />
-        <Container value={displayValue} />
+        <Container
+          hat={hat}
+          value={displayValue}
+        />
       </div>
     )
   }
