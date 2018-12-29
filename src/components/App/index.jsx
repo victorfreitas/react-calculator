@@ -110,7 +110,7 @@ class App extends Component {
   calcPercentage() {
     const { operator, values: [amount, perc] } = this.state
 
-    if (operator) {
+    if (operator && perc) {
       this.setStateResult(
         `${amount} ${operator} ${perc}% =`,
         this.calc(amount, (amount / 100) * perc)
