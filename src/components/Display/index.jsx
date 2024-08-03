@@ -1,22 +1,23 @@
-import React, { Fragment, memo } from 'react'
 import PropTypes from 'prop-types'
 
-import './style.css'
+import styles from './style.module.css'
 
-const Display = ({ hat, value }) => (
-  <Fragment>
-    <span className="display-calc">
-      {hat}
-    </span>
-    <div className="display">
-      {value}
-    </div>
-  </Fragment>
-)
-
-Display.propTypes = {
-  hat: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+function Display({ calculation, value }) {
+  return (
+    <>
+      <span className={styles.displayCalc} data-testid="display-calculation">
+        {calculation}
+      </span>
+      <div className={styles.display} data-testid="display-value">
+        {value}
+      </div>
+    </>
+  )
 }
 
-export default memo(Display)
+Display.propTypes = {
+  calculation: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
+}
+
+export default Display

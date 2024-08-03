@@ -1,20 +1,17 @@
-import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
-import './style.css'
+import styles from './style.module.css'
 
-const Title = ({ text }) => (
-  <h1 className="title">
-    {text}
-  </h1>
-)
-
-Title.defaultProps = {
-  text: 'Calculator',
+function Title({ text = 'Calculator' }) {
+  return (
+    <h1 className={styles.title} data-testid="title">
+      {text}
+    </h1>
+  )
 }
 
 Title.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.string
 }
 
-export default memo(Title)
+export default Title

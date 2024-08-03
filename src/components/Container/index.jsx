@@ -1,30 +1,21 @@
-import React, { Fragment, memo } from 'react'
-import PropTypes from 'prop-types'
+import { useContext } from 'react'
 
-import { formatNumber } from '../../helpers'
 import Display from '../Display'
 import Buttons from '../Buttons'
+import CalculatorContext from '../../apis/calculatorContext'
 
-const Container = ({ hat, value }) => (
-  <Fragment>
-    <Display
-      value={formatNumber(value)}
-      hat={hat}
-    />
-    <Buttons />
-  </Fragment>
-)
+function Container() {
+  const calculator = useContext(CalculatorContext)
 
-Container.defaultProps = {
-  hat: '',
+  return (
+    <>
+      <Display
+        value={calculator.displayValue}
+        calculation={calculator.calculation}
+      />
+      <Buttons />
+    </>
+  )
 }
 
-Container.propTypes = {
-  hat: PropTypes.string,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
-}
-
-export default memo(Container)
+export default Container

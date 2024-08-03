@@ -1,27 +1,81 @@
 {
   "name": "react-calculator",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "http://victorfreitas.github.io/react-calculator",
-  "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "test": "cross-env NODE_ENV=test react-scripts test --colors --watchAll=false",
+    "test:coverage": "npm test -- --coverage",
+    "test:watch": "npm test -- --watchAll",
+    "eject": "react-scripts eject",
+    "prepare": "husky &> /dev/null || true",
+    "lint": "eslint --fix --ext .js --ext .jsx src/ && prettier --write src/"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/build/",
+      "!<rootDir>/public/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text",
+      "text-summary",
+      "lcov"
+    ]
+  },
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "overrides": {
+    "postcss": "~8.4.40",
+    "css-select": "~5.1.0",
+    "jest": "~27.5.1"
+  },
+  "dependencies": {
+    "react": "~18.3.1",
+    "react-dom": "~18.3.1",
+    "react-scripts": "~5.0.1",
+    "web-vitals": "~4.2.2"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "@babel/plugin-proposal-private-property-in-object": "~7.21.11",
+    "@commitlint/cli": "~19.3.0",
+    "@commitlint/config-conventional": "~19.2.2",
+    "@testing-library/jest-dom": "~6.4.8",
+    "@testing-library/react": "~16.0.0",
+    "@testing-library/user-event": "~14.5.2",
+    "cross-env": "~7.0.3",
+    "husky": "~9.1.4",
+    "jest": "~27.5.1",
+    "lint-staged": "~15.2.8",
+    "prettier": "~3.3.3"
+  }
 }
