@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.43b0126d.css",
-    "main.js": "/static/js/main.6c3b93e6.js",
+    "main.js": "/static/js/main.30936e6b.js",
     "static/js/685.cf08502b.chunk.js": "/static/js/685.cf08502b.chunk.js",
     "static/media/roboto-mono-thin.woff2": "/static/media/roboto-mono-thin.1c6aea2061af225e76d0.woff2",
     "index.html": "/index.html"
   },
   "entrypoints": [
     "static/css/main.43b0126d.css",
-    "static/js/main.6c3b93e6.js"
+    "static/js/main.30936e6b.js"
   ]
 }
