@@ -122,6 +122,12 @@ class Calculator {
     const operator = this.get('operator')
 
     if (!hasCurrentOperand || (waitingNewOperand && operator)) {
+      if (this.get('displayValue') !== '0') {
+        this.set('operator', value)
+          .set('operatorLabel', label)
+          .set('waitingNewOperand', true)
+      }
+
       return this.getResult()
     }
 
