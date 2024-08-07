@@ -526,4 +526,41 @@ describe('should test the calculator class', () => {
       expect(calculator.getResult()).toStrictEqual(calculatorInitialState)
     })
   })
+
+  describe('should test change operator after result', () => {
+    it('#subtractAfterResult', () => {
+      const calculator = Calculator.init(calculatorInitialState)
+
+      calculator.digit({ value: 5 })
+      calculator.operator(Op.add)
+      calculator.digit({ value: 4 })
+      calculator.equals()
+
+      expect(calculator.getResult()).toStrictEqual({
+        displayValue: '9',
+        calculation: '5 + 4 =',
+        operator: 'add',
+        operatorLabel: '+',
+        lastOperand: 9,
+        currentOperand: 4,
+        values: [],
+        waitingNewOperand: true
+      })
+
+      calculator.operator(Op.subtract)
+      calculator.digit({ value: 2 })
+      calculator.equals()
+
+      expect(calculator.getResult()).toStrictEqual({
+        displayValue: '7',
+        calculation: '9 - 2 =',
+        operator: 'subtract',
+        operatorLabel: '-',
+        lastOperand: 7,
+        currentOperand: 2,
+        values: [],
+        waitingNewOperand: true
+      })
+    })
+  })
 })
