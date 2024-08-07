@@ -1,0 +1,7 @@
+node_modules
+coverage
+tmp
+build
+.env
+.husky
+react-calculator.code-workspace

@@ -1,14 +1,13 @@
 {
-  "main.css": "/react-calculator/static/css/main.14b3e90a.chunk.css",
-  "main.js": "/react-calculator/static/js/main.7e280b7e.chunk.js",
-  "main.js.map": "/react-calculator/static/js/main.7e280b7e.chunk.js.map",
-  "static/js/1.0402c141.chunk.js": "/react-calculator/static/js/1.0402c141.chunk.js",
-  "static/js/1.0402c141.chunk.js.map": "/react-calculator/static/js/1.0402c141.chunk.js.map",
-  "runtime~main.js": "/react-calculator/static/js/runtime~main.a2ecf2e6.js",
-  "runtime~main.js.map": "/react-calculator/static/js/runtime~main.a2ecf2e6.js.map",
-  "static/media/style.css": "/react-calculator/static/media/RobotoMono-Thin.b93c2ad4.ttf",
-  "static/css/main.14b3e90a.chunk.css.map": "/react-calculator/static/css/main.14b3e90a.chunk.css.map",
-  "index.html": "/react-calculator/index.html",
-  "precache-manifest.643a4acc5e4b8f08dd587e2c92c2fd26.js": "/react-calculator/precache-manifest.643a4acc5e4b8f08dd587e2c92c2fd26.js",
-  "service-worker.js": "/react-calculator/service-worker.js"
+  "files": {
+    "main.css": "/static/css/main.43b0126d.css",
+    "main.js": "/static/js/main.6c3b93e6.js",
+    "static/js/685.cf08502b.chunk.js": "/static/js/685.cf08502b.chunk.js",
+    "static/media/roboto-mono-thin.woff2": "/static/media/roboto-mono-thin.1c6aea2061af225e76d0.woff2",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.43b0126d.css",
+    "static/js/main.6c3b93e6.js"
+  ]
 }
