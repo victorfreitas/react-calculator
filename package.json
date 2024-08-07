@@ -10,7 +10,8 @@
     "test:watch": "npm test -- --watchAll",
     "eject": "react-scripts eject",
     "prepare": "husky &> /dev/null || true",
-    "lint": "eslint --fix --ext .js --ext .jsx src/ && prettier --write src/"
+    "lint": "eslint --ext .js --ext .jsx src/",
+    "pretty": "prettier --check src/"
   },
   "eslintConfig": {
     "extends": [
