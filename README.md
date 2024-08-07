@@ -6,7 +6,7 @@ This repository contains a simple calculator web application built with React. T
 
 ## Preview
 
-- [React Calculator - GitHub Page](https://victorfreitas.github.io/react-calculator/)
+- [React Calculator](https://victorfreitas.github.io/react-calculator/)
 
 ## Features
 
