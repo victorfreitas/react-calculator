@@ -1,10 +1,15 @@
 @font-face {
-  font-family: 'RobotoMono';
-  src: url(../fonts/RobotoMono-Thin.ttf)
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/roboto-mono-thin.woff2) format('woff2');
 }
 
 * {
-  font-family: 'RobotoMono', monospace;
+  font-family: 'Roboto Mono', monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
   margin: 0;
   overflow: hidden;
   padding: 0;
@@ -12,7 +17,7 @@
 
 body {
   align-items: center;
-  background: #252a4c;
+  background: #0d1117;
   color: #fff;
   display: flex;
   height: 100vh;

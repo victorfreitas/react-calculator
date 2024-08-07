@@ -3,21 +3,20 @@
   background-color: #ff8100;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.8em;
+  font-size: 1.7em;
   grid-column: span 4;
   justify-content: flex-end;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 5px 20px 20px;
 }
 
-.display-calc {
+.displayCalc {
   align-items: center;
-  background: #ff8100;
-  border-bottom: 1px solid #d26d07;
-  color: #48474f;
+  background: #313741;
+  color: #8f8f8f;
   display: flex;
   font-size: 12px;
-  font-weight: bolder;
+  font-weight: 700;
   grid-column: span 4;
   justify-content: flex-end;
   padding: 0 6px 0 0;

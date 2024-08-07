@@ -1,15 +1,8 @@
-import React, { memo } from 'react'
-
-import labels from '../../helpers/labels'
+import labels from '../../utils/labels'
 import Button from '../Button'
 
-const Buttons = () => (
-  labels.map(label => (
-    <Button
-      key={label.name}
-      label={label}
-    />
-  ))
-)
+function Buttons() {
+  return labels.map(props => <Button key={props.label} {...props} />)
+}
 
-export default memo(Buttons)
+export default Buttons

@@ -1,159 +1,37 @@
-import React, { Component } from 'react'
+import { memo, useEffect, useReducer } from 'react'
 
-import './style.css'
-
-import initialState from './initialState'
-import { operations } from '../../helpers'
+import styles from './style.module.css'
 import Title from '../Title'
 import Container from '../Container'
+import CalculatorContext from '../../apis/calculatorContext'
+import calculatorInitialState from '../../utils/calculatorInitialState'
+import calculatorReducer from '../../reducers/calculatorReducer'
+import { CLICK_CALCULATOR } from '../../constants/event'
 
-class App extends Component {
-  state = { ...initialState }
+function App() {
+  const [state, dispatch] = useReducer(
+    calculatorReducer,
+    calculatorInitialState
+  )
 
-  componentDidMount() {
-    document.addEventListener('btnclick', this.handleClick)
-  }
+  useEffect(() => {
+    const handle = event => dispatch(event.detail)
 
-  clearMemory() {
-    this.setState({ ...initialState })
-  }
+    document.addEventListener(CLICK_CALCULATOR, handle)
 
-  calc = (a, b) => {
-    const { operator } = this.state
-
-    return operations[operator](a, b)
-  }
-
-  setOperation(op) {
-    let {
-      index,
-      operator,
-      isDisplayResult,
-      displayValue,
-    } = this.state
-
-    if (operator) {
-      this.setState({ operator: op })
-      this.showResult()
-      return
+    return () => {
+      document.removeEventListener(CLICK_CALCULATOR, handle)
     }
+  }, [dispatch])
 
-    if (isDisplayResult) {
-      const value = parseFloat(displayValue)
-      index = 0
-
-      this.setState({ values: [value] })
-    }
-
-    index++
-
-    this.setState({
-      index,
-      operator: op,
-      clearDisplay: true,
-      isDisplayResult: false,
-    })
-  }
-
-  addDigit(n) {
-    const {
-      index,
-      displayValue,
-      clearDisplay,
-      values,
-    } = this.state
-
-    if (n === '.' && displayValue.includes('.')) {
-      return
-    }
-
-    const clear = displayValue === '0' || clearDisplay
-    const value = `${clear ? '' : displayValue}${n}`
-
-    if (n !== '.') {
-      const cloneValues = [...values]
-      cloneValues[index] = parseFloat(value)
-
-      this.setState({ values: cloneValues.filter(v => !isNaN(v)) })
-    }
-
-    this.setState({
-      displayValue: value,
-      clearDisplay: false,
-    })
-  }
-
-  setStateResult(hat, result) {
-    this.setState({
-      hat,
-      index: 1,
-      displayValue: result,
-      values: [result],
-      clearDisplay: true,
-      isDisplayResult: true,
-    })
-  }
-
-  showResult() {
-    const { operator, values } = this.state
-
-    if (!operator || values.length < 2) {
-      return
-    }
-
-    this.setStateResult(
-      `${values.join(` ${operator} `)} =`,
-      [...values].reduce(this.calc)
-    )
-  }
-
-  calcPercentage() {
-    const { operator, values: [amount, perc] } = this.state
-
-    if (operator && perc) {
-      this.setStateResult(
-        `${amount} ${operator} ${perc}% =`,
-        this.calc(amount, (amount / 100) * perc)
-      )
-    }
-  }
-
-  handleClick = ({ detail: { type, name } }) => {
-    switch (type) {
-      case 'clear':
-        this.clearMemory()
-        break
-
-      case 'operation':
-        this.setOperation(name)
-        break
-
-      case 'result':
-        this.showResult()
-        break
-
-      case 'perc':
-        this.calcPercentage()
-        break
-
-      default:
-        this.addDigit(name)
-    }
-  }
-
-  render() {
-    const { displayValue, hat } = this.state
-
-    return (
-      <div className="calculator">
+  return (
+    <CalculatorContext.Provider value={state}>
+      <div className={styles.calculator} data-testid="app">
         <Title />
-        <Container
-          hat={hat}
-          value={displayValue}
-        />
+        <Container />
       </div>
-    )
-  }
+    </CalculatorContext.Provider>
+  )
 }
 
-export default App
+export default memo(App)
