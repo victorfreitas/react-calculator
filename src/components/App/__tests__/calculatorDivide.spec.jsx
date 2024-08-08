@@ -9,7 +9,7 @@ test('should test the calculator division', () => {
   const displayHat = screen.getByTestId('display-calculation')
   const displayValue = screen.getByTestId('display-value')
   const clear = screen.getByText('AC', { selector: 'button' })
-  const divide = screen.getByText('/', { selector: 'button' })
+  const divide = screen.getByText('÷', { selector: 'button' })
   const equals = screen.getByText('=', { selector: 'button' })
   const seven = screen.getByText('7', { selector: 'button' })
   const eight = screen.getByText('8', { selector: 'button' })
@@ -27,17 +27,17 @@ test('should test the calculator division', () => {
   fireEvent.click(zero)
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('987 / 70 =')
+  expect(displayHat).toHaveTextContent('987 ÷ 70 =')
   expect(displayValue).toHaveTextContent(/^14.1$/)
 
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('14.1 / 70 =')
+  expect(displayHat).toHaveTextContent('14.1 ÷ 70 =')
   expect(displayValue).toHaveTextContent(/^0.20142857142857143$/)
 
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('0.20142857142857143 / 70 =')
+  expect(displayHat).toHaveTextContent('0.20142857142857143 ÷ 70 =')
   expect(displayValue).toHaveTextContent(/^0.0028775510204081633$/)
 
   fireEvent.click(clear)

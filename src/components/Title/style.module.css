@@ -1,6 +1,7 @@
 .title {
   align-items: center;
-  background: #46474e;
+  background: hsl(240, 3%, 15%);
+  color: hsl(217, 10%, 37%);
   display: flex;
   font-family: sans-serif;
   font-size: 20px;

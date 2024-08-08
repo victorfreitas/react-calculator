@@ -11,7 +11,7 @@ function Button({ className, value, label, name, testId = 'button' }) {
   return (
     <button
       type="button"
-      className={`${styles.btn} ${styles[className]}`}
+      className={`${styles.btn} ${styles[className] || ''}`}
       data-testid={testId}
       onClick={event => {
         event.preventDefault()

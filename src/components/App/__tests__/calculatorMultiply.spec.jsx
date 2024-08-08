@@ -9,7 +9,7 @@ test('should test the calculator multiplication', () => {
   const displayHat = screen.getByTestId('display-calculation')
   const displayValue = screen.getByTestId('display-value')
   const clear = screen.getByText('AC', { selector: 'button' })
-  const multiply = screen.getByText('*', { selector: 'button' })
+  const multiply = screen.getByText('×', { selector: 'button' })
   const equals = screen.getByText('=', { selector: 'button' })
   const two = screen.getByText('2', { selector: 'button' })
   const seven = screen.getByText('7', { selector: 'button' })
@@ -28,17 +28,17 @@ test('should test the calculator multiplication', () => {
   fireEvent.click(zero)
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('798 * 20 =')
+  expect(displayHat).toHaveTextContent('798 × 20 =')
   expect(displayValue).toHaveTextContent(/^15960$/)
 
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('15960 * 20 =')
+  expect(displayHat).toHaveTextContent('15960 × 20 =')
   expect(displayValue).toHaveTextContent(/^319200$/)
 
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('319200 * 20 =')
+  expect(displayHat).toHaveTextContent('319200 × 20 =')
   expect(displayValue).toHaveTextContent(/^6384000$/)
 
   fireEvent.click(clear)

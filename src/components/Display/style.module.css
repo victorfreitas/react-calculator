@@ -1,6 +1,7 @@
 .display {
   align-items: center;
-  background-color: #ff8100;
+  background-color: hsl(240, 4%, 15%);
+  color: hsl(0, 0%, 82%);
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.7em;
@@ -12,8 +13,8 @@
 
 .displayCalc {
   align-items: center;
-  background: #313741;
-  color: #8f8f8f;
+  background: hsl(240, 1%, 17%);
+  color: hsl(0, 0%, 67%);
   display: flex;
   font-size: 12px;
   font-weight: 700;
