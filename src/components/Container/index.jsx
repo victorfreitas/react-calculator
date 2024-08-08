@@ -1,21 +1,15 @@
-import { useContext } from 'react'
+import { memo } from 'react'
 
 import Display from '../Display'
 import Buttons from '../Buttons'
-import CalculatorContext from '../../apis/calculatorContext'
 
 function Container() {
-  const calculator = useContext(CalculatorContext)
-
   return (
     <>
-      <Display
-        value={calculator.displayValue}
-        calculation={calculator.calculation}
-      />
+      <Display />
       <Buttons />
     </>
   )
 }
 
-export default Container
+export default memo(Container)

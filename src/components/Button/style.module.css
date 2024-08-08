@@ -1,22 +1,29 @@
 :root {
-  --bg-button: #f0f0f0;
-  --border-button: 1px solid #2f2f2f;
+  --bg-button: hsl(240, 2%, 35%);
+  --bg-button-active: hsl(240, 2%, 30%);
+  --border-button: 1px solid hsl(240, 2%, 20%);
+  --text-color: hsl(0, 0%, 93%);
+  --bg-button-operator: hsl(36, 100%, 52%);
+  --bg-button-operator-active: hsl(36, 100%, 42%);
+  --bg-button-control: hsl(240, 3%, 22%);
+  --bg-button-control-active: hsl(240, 2%, 19%);
 }
 
 .btn {
+  color: var(--text-color);
   background-color: var(--bg-button);
   border-bottom: var(--border-button);
-  border-left: none;
   border-right: var(--border-button);
+  border-left: none;
   border-top: none;
-  cursor: pointer;
-  font-size: 1.4em;
+  cursor: initial;
+  font-size: 1.3em;
   font-weight: 600;
   outline: none;
 }
 
 .btn:active {
-  background-color: #ccc;
+  background-color: var(--bg-button-active);
 }
 
 .double {
@@ -28,10 +35,20 @@
 }
 
 .operator {
-  background-color: #46474e;
-  color: #fff;
+  background-color: var(--bg-button-operator);
+  color: var(--text-color);
+  font-size: 1.6em;
 }
 
 .operator:active {
-  background-color: #585858;
+  background-color: var(--bg-button-operator-active);
+}
+
+.operator-control {
+  background-color: var(--bg-button-control);
+  color: var(--text-color);
+}
+
+.operator-control:active {
+  background-color: var(--bg-button-control-active);
 }

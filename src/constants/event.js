@@ -1,1 +1,1 @@
-export const CLICK_CALCULATOR = 'click_calculator'
+export const CLICK_CALCULATOR = 'events:click_calculator'

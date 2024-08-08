@@ -9,7 +9,7 @@ test('should test the calculator subtraction', () => {
   const displayHat = screen.getByTestId('display-calculation')
   const displayValue = screen.getByTestId('display-value')
   const clear = screen.getByText('AC', { selector: 'button' })
-  const subtract = screen.getByText('-', { selector: 'button' })
+  const subtract = screen.getByText('−', { selector: 'button' })
   const equals = screen.getByText('=', { selector: 'button' })
   const two = screen.getByText('2', { selector: 'button' })
   const three = screen.getByText('3', { selector: 'button' })
@@ -28,17 +28,17 @@ test('should test the calculator subtraction', () => {
   fireEvent.click(five)
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('236 - 45 =')
+  expect(displayHat).toHaveTextContent('236 − 45 =')
   expect(displayValue).toHaveTextContent(/^191$/)
 
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('191 - 45 =')
+  expect(displayHat).toHaveTextContent('191 − 45 =')
   expect(displayValue).toHaveTextContent(/^146$/)
 
   fireEvent.click(equals)
 
-  expect(displayHat).toHaveTextContent('146 - 45 =')
+  expect(displayHat).toHaveTextContent('146 − 45 =')
   expect(displayValue).toHaveTextContent(/^101$/)
 
   fireEvent.click(clear)

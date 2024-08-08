@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { memo } from 'react'
 
 import styles from './style.module.css'
 import { CLICK_CALCULATOR } from '../../constants/event'
@@ -31,4 +32,4 @@ Button.propTypes = {
   testId: PropTypes.string
 }
 
-export default Button
+export default memo(Button)

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { memo } from 'react'
 
 import styles from './style.module.css'
 
@@ -14,4 +15,4 @@ Title.propTypes = {
   text: PropTypes.string
 }
 
-export default Title
+export default memo(Title)

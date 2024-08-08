@@ -1,23 +1,21 @@
-import PropTypes from 'prop-types'
+import { memo } from 'react'
 
 import styles from './style.module.css'
+import useObservableCalculatorState from '../../hooks/useObservableCalculatorState'
 
-function Display({ calculation, value }) {
+function Display() {
+  const state = useObservableCalculatorState()
+
   return (
     <>
       <span className={styles.displayCalc} data-testid="display-calculation">
-        {calculation}
+        {state.calculation}
       </span>
       <div className={styles.display} data-testid="display-value">
-        {value}
+        {state.displayValue}
       </div>
     </>
   )
 }
 
-Display.propTypes = {
-  calculation: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
-}
-
-export default Display
+export default memo(Display)
