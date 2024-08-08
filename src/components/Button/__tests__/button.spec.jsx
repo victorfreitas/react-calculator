@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 
 import Button from '../'
 import { CLICK_CALCULATOR } from '../../../constants/event'
+import { targetElement } from '../../../hooks/useObservableCalculatorState'
 
 test('should test a single button', () => {
   render(<Button name="clear" className="double" value="clear" label="AC" />)

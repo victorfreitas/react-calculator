@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { memo } from 'react'
 
 import styles from './style.module.css'
 import { CLICK_CALCULATOR } from '../../constants/event'
@@ -11,7 +12,7 @@ function Button({ className, value, label, name, testId = 'button' }) {
   return (
     <button
       type="button"
-      className={`${styles.btn} ${styles[className] || ''}`}
+      className={`${styles.btn} ${styles[className]}`}
       data-testid={testId}
       onClick={event => {
         event.preventDefault()
@@ -31,4 +32,4 @@ Button.propTypes = {
   testId: PropTypes.string
 }
 
-export default Button
+export default memo(Button)
