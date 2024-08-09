@@ -1,7 +1,7 @@
 import CalculatorType from '../constants/calculatorType'
 import Calculator from '../containers/calculator'
 
-const { CLEAR, NEGATE, PERCENTAGE, OPERATOR, DIGIT, DOT, EQUALS } =
+const { CLEAR, NEGATE, PERCENTAGE, OPERATOR, DIGIT, DECIMAL, EQUALS } =
   CalculatorType
 
 function calculatorReducer(state, action) {
@@ -15,8 +15,8 @@ function calculatorReducer(state, action) {
     case PERCENTAGE:
       return Calculator.init(state).percentage()
 
-    case DOT:
-      return Calculator.init(state).dot()
+    case DECIMAL:
+      return Calculator.init(state).decimal()
 
     case DIGIT:
       return Calculator.init(state).digit(action)

@@ -3,12 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react'
 
 import App from '../'
 import labels from '../../../utils/labels'
-import { CLICK_CALCULATOR } from '../../../constants/event'
+import { calculatorSubject } from '../../../observables/calculatorObservable'
 
 test('should test the calculator buttons click', () => {
   render(<App />)
 
-  const dispatchEventSpy = jest.spyOn(document, 'dispatchEvent')
+  const calculatorSubjectSpy = jest.spyOn(calculatorSubject, 'next')
 
   labels.forEach(({ value, label, name }, i) => {
     const button = screen.queryByText(label, { selector: 'button' })
@@ -17,14 +17,13 @@ test('should test the calculator buttons click', () => {
 
     fireEvent.click(button)
 
-    expect(dispatchEventSpy).toHaveBeenCalledTimes(i + 1)
-    expect(dispatchEventSpy).toHaveBeenCalledWith(
-      expect.objectContaining({
-        type: CLICK_CALCULATOR,
-        detail: { type: name, value, label }
-      })
-    )
+    expect(calculatorSubjectSpy).toHaveBeenCalledTimes(i + 1)
+    expect(calculatorSubjectSpy).toHaveBeenCalledWith({
+      type: name,
+      value,
+      label
+    })
   })
 
-  dispatchEventSpy.mockReset()
+  calculatorSubjectSpy.mockReset()
 })

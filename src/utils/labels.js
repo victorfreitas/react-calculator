@@ -1,13 +1,13 @@
 import CalculatorType from '../constants/calculatorType'
 import Operator from '../constants/operator'
 
-const { CLEAR, NEGATE, PERCENTAGE, OPERATOR, DIGIT, DOT, EQUALS } =
+const { CLEAR, NEGATE, PERCENTAGE, OPERATOR, DIGIT, DECIMAL, EQUALS } =
   CalculatorType
 const { ADD, SUBTRACT, DIVIDE, MULTIPLY, PERCENT } = Operator
 
 const labels = [
-  { label: 'AC', className: 'operator-control', name: CLEAR, value: 'clear' },
-  { label: '±', className: 'operator-control', name: NEGATE, value: 'negate' },
+  { label: 'AC', className: 'operator-control', name: CLEAR, value: CLEAR },
+  { label: '±', className: 'operator-control', name: NEGATE, value: NEGATE },
   {
     label: '%',
     className: 'operator-control',
@@ -28,8 +28,8 @@ const labels = [
   { label: '3', className: 'digit', name: DIGIT, value: 3 },
   { label: '+', className: 'operator', name: OPERATOR, value: ADD },
   { label: '0', className: 'double', name: DIGIT, value: 0 },
-  { label: '.', className: 'digit', name: DOT, value: 'decimal' },
-  { label: '=', className: 'operator', name: EQUALS, value: 'result' }
+  { label: '.', className: 'digit', name: DECIMAL, value: DECIMAL },
+  { label: '=', className: 'operator', name: EQUALS, value: EQUALS }
 ]
 
 export default labels

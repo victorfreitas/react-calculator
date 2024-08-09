@@ -4,7 +4,7 @@ const CalculatorType = {
   PERCENTAGE: 'percentage',
   DIGIT: 'digit',
   OPERATOR: 'operator',
-  DOT: 'dot',
+  DECIMAL: 'decimal',
   EQUALS: 'equals'
 }
 

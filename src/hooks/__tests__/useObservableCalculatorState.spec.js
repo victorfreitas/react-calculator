@@ -1,12 +1,12 @@
 import { describe, it, expect } from '@jest/globals'
-import { act } from 'react'
 import { render } from '@testing-library/react'
 
-import useObservableCalculatorState, {
+import {
+  calculatorSubject,
   calculator$
-} from '../useObservableCalculatorState'
+} from '../../observables/calculatorObservable'
+import useObservableCalculatorState from '../useObservableCalculatorState'
 import initialState from '../../utils/calculatorInitialState'
-import { CLICK_CALCULATOR } from '../../constants/event'
 
 function TestComponent() {
   const state = useObservableCalculatorState()
@@ -21,19 +21,17 @@ describe('should test the useObservableCalculatorState hook', () => {
     expect(container).toHaveTextContent(JSON.stringify(initialState))
   })
 
-  it('#dispatchCalculatorObservableStateEvent', async () => {
+  it('#dispatchCalculatorObservableStateEvent', () => {
     const callback = jest.fn()
     const subscription = calculator$.subscribe(callback)
 
-    await act(async () => {
-      document.dispatchEvent(
-        new CustomEvent(CLICK_CALCULATOR, {
-          detail: { type: 'add', label: '1', value: 1 }
-        })
-      )
-    })
+    calculatorSubject.next({ type: 'digit', label: '1', value: 1 })
 
-    expect(callback).toHaveBeenCalledWith({ type: 'add', label: '1', value: 1 })
+    expect(callback).toHaveBeenCalledWith({
+      type: 'digit',
+      label: '1',
+      value: 1
+    })
     subscription.unsubscribe()
   })
 })

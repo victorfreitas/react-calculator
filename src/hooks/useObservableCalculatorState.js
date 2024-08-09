@@ -1,13 +1,8 @@
 import { useEffect, useReducer } from 'react'
-import { fromEvent, map } from 'rxjs'
 
-import { CLICK_CALCULATOR } from '../constants/event'
 import reducer from '../reducers/calculatorReducer'
 import initialState from '../utils/calculatorInitialState'
-
-export const calculator$ = fromEvent(document, CLICK_CALCULATOR).pipe(
-  map(event => event.detail)
-)
+import { calculator$ } from '../observables/calculatorObservable'
 
 function useObservableCalculatorState() {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -15,7 +10,9 @@ function useObservableCalculatorState() {
   useEffect(() => {
     const subscription = calculator$.subscribe(dispatch)
 
-    return () => subscription.unsubscribe()
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [])
 
   return state

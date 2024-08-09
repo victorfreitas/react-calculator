@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import Container from '../'
 import labels from '../../../utils/labels'
-import { CLICK_CALCULATOR } from '../../../constants/event'
+import { calculatorSubject } from '../../../observables/calculatorObservable'
 
 describe('should test the container of display and buttons', () => {
   it('should test the container', () => {
@@ -33,7 +33,7 @@ describe('should test the container of display and buttons', () => {
     render(<Container />)
 
     const buttons = screen.getAllByTestId('button')
-    const dispatchEventSpy = jest.spyOn(document, 'dispatchEvent')
+    const calculatorSubjectSpy = jest.spyOn(calculatorSubject, 'next')
 
     expect(buttons).toHaveLength(labels.length)
 
@@ -46,14 +46,13 @@ describe('should test the container of display and buttons', () => {
       expect(button).toHaveClass(`btn ${className}`, { exact: true })
       expect(button).toHaveAttribute('type', 'button')
       expect(button).toHaveTextContent(label)
-      expect(dispatchEventSpy).toHaveBeenCalledTimes(1)
-      expect(dispatchEventSpy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: CLICK_CALCULATOR,
-          detail: { type: name, value, label }
-        })
-      )
-      dispatchEventSpy.mockReset()
+      expect(calculatorSubjectSpy).toHaveBeenCalledTimes(1)
+      expect(calculatorSubjectSpy).toHaveBeenCalledWith({
+        type: name,
+        value,
+        label
+      })
+      calculatorSubjectSpy.mockReset()
     })
   })
 })
