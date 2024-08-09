@@ -36,7 +36,7 @@ test('should test the labels', () => {
     { label: '3', className: 'digit', name: 'digit', value: 3 },
     { label: '+', className: 'operator', name: 'operator', value: 'add' },
     { label: '0', className: 'double', name: 'digit', value: 0 },
-    { label: '.', className: 'digit', name: 'dot', value: 'decimal' },
-    { label: '=', className: 'operator', name: 'equals', value: 'result' }
+    { label: '.', className: 'digit', name: 'decimal', value: 'decimal' },
+    { label: '=', className: 'operator', name: 'equals', value: 'equals' }
   ])
 })

@@ -22,7 +22,8 @@
   outline: none;
 }
 
-.btn:active {
+.btn:active,
+.btnActive {
   background-color: var(--bg-button-active);
 }
 
@@ -40,7 +41,8 @@
   font-size: 1.6em;
 }
 
-.operator:active {
+.operator:active,
+.operator.btnActive {
   background-color: var(--bg-button-operator-active);
 }
 
@@ -49,6 +51,7 @@
   color: var(--text-color);
 }
 
-.operator-control:active {
+.operator-control:active,
+.operator-control.btnActive {
   background-color: var(--bg-button-control-active);
 }

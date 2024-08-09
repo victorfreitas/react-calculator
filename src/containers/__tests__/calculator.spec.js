@@ -291,12 +291,12 @@ describe('should test the calculator class', () => {
     it('#add', () => {
       const calculator = Calculator.init(calculatorInitialState)
 
-      calculator.dot()
+      calculator.decimal()
       calculator.digit({ value: 2 })
       calculator.digit({ value: 5 })
       calculator.operator(Op.add)
       calculator.digit({ value: 1 })
-      calculator.dot()
+      calculator.decimal()
       calculator.digit({ value: 2 })
       calculator.digit({ value: 5 })
       calculator.equals()
@@ -319,7 +319,7 @@ describe('should test the calculator class', () => {
       calculator.digit({ value: 2 })
       calculator.digit({ value: 5 })
       calculator.operator(Op.subtract)
-      calculator.dot()
+      calculator.decimal()
       calculator.digit({ value: 2 })
       calculator.digit({ value: 5 })
       calculator.equals()
@@ -469,10 +469,10 @@ describe('should test the calculator class', () => {
       })
     })
 
-    it('#dot', () => {
+    it('#decimal', () => {
       const calculator = Calculator.init(calculatorInitialState)
 
-      calculator.dot()
+      calculator.decimal()
       calculator.digit({ value: 1 })
 
       expect(calculator.getResult()).toStrictEqual({
@@ -482,7 +482,7 @@ describe('should test the calculator class', () => {
         values: [0, '.', 1]
       })
 
-      calculator.dot()
+      calculator.decimal()
       expect(calculator.getResult()).toStrictEqual({
         ...calculatorInitialState,
         displayValue: '0.1',
@@ -505,7 +505,7 @@ describe('should test the calculator class', () => {
         values: []
       })
 
-      calculator.dot()
+      calculator.decimal()
       expect(calculator.getResult()).toStrictEqual({
         ...calculatorInitialState,
         displayValue: '0.',

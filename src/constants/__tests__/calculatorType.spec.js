@@ -9,7 +9,7 @@ test('should valid calculator type enum', () => {
     PERCENTAGE: 'percentage',
     DIGIT: 'digit',
     OPERATOR: 'operator',
-    DOT: 'dot',
+    DECIMAL: 'decimal',
     EQUALS: 'equals'
   })
 })

@@ -2,22 +2,22 @@ import PropTypes from 'prop-types'
 import { memo } from 'react'
 
 import styles from './style.module.css'
-import { CLICK_CALCULATOR } from '../../constants/event'
+import { calculatorSubject } from '../../observables/calculatorObservable'
 
 function Button({ className, value, label, name, testId = 'button' }) {
-  const customEvent = new CustomEvent(CLICK_CALCULATOR, {
-    detail: { value, label, type: name }
-  })
+  const handlerClick = event => {
+    event.preventDefault()
+    calculatorSubject.next({ value, label, type: name })
+  }
 
   return (
     <button
+      id={`btn-${value}`}
       type="button"
       className={`${styles.btn} ${styles[className]}`}
       data-testid={testId}
-      onClick={event => {
-        event.preventDefault()
-        document.dispatchEvent(customEvent)
-      }}
+      data-class={styles.btnActive}
+      onClick={handlerClick}
     >
       {label}
     </button>

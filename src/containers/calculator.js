@@ -167,7 +167,7 @@ class Calculator {
     return this.getResult()
   }
 
-  dot() {
+  decimal() {
     if (!this.get('displayValue').includes('.')) {
       const displayValue = this.get('displayValue')
       const hasOperand = displayValue !== '0' && this.hasValues()

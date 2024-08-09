@@ -14,7 +14,7 @@ test('should test the calculator addition', () => {
   const clear = screen.getByText('AC', { selector: 'button' })
   const add = screen.getByText('+', { selector: 'button' })
   const equals = screen.getByText('=', { selector: 'button' })
-  const dot = screen.getByText('.', { selector: 'button' })
+  const decimal = screen.getByText('.', { selector: 'button' })
   const one = screen.getByText('1', { selector: 'button' })
   const two = screen.getByText('2', { selector: 'button' })
   const zero = screen.queryByText('0', { selector: 'button' })
@@ -50,7 +50,7 @@ test('should test the calculator addition', () => {
   expect(displayHat).toHaveTextContent('')
   expect(displayValue).toHaveTextContent(/^0$/)
 
-  fireEvent.click(dot)
+  fireEvent.click(decimal)
   fireEvent.click(two)
   fireEvent.click(one)
   fireEvent.click(two)
@@ -76,15 +76,15 @@ test('should test the calculator addition', () => {
   expect(displayHat).toHaveTextContent('')
   expect(displayValue).toHaveTextContent(/^0$/)
 
-  fireEvent.click(dot)
-  fireEvent.click(dot) // wrong click, bypass action.
+  fireEvent.click(decimal)
+  fireEvent.click(decimal) // wrong click, bypass action.
   fireEvent.click(two)
   fireEvent.click(one)
 
   expect(displayHat).toHaveTextContent('')
   expect(displayValue).toHaveTextContent(/^0\.21$/)
 
-  fireEvent.click(dot) // wrong click, bypass action.
+  fireEvent.click(decimal) // wrong click, bypass action.
 
   expect(displayHat).toHaveTextContent('')
   expect(displayValue).toHaveTextContent(/^0\.21$/)
@@ -94,7 +94,7 @@ test('should test the calculator addition', () => {
   expect(displayHat).toHaveTextContent('')
   expect(displayValue).toHaveTextContent(/^0\.21$/)
 
-  fireEvent.click(dot)
+  fireEvent.click(decimal)
 
   expect(displayHat).toHaveTextContent('')
   expect(displayValue).toHaveTextContent(/^0\.$/)

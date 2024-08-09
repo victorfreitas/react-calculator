@@ -5,7 +5,7 @@ import initialState from '../../utils/calculatorInitialState'
 import CalculatorType from '../../constants/calculatorType'
 import Operator from '../../constants/operator'
 
-const { CLEAR, PERCENTAGE, DIGIT, OPERATOR, DOT, EQUALS, NEGATE } =
+const { CLEAR, PERCENTAGE, DIGIT, OPERATOR, DECIMAL, EQUALS, NEGATE } =
   CalculatorType
 const { ADD, SUBTRACT, DIVIDE, MULTIPLY, PERCENT } = Operator
 const actions = [
@@ -15,7 +15,7 @@ const actions = [
   { type: PERCENTAGE, value: PERCENT, label: '%', display: '0' },
   { type: OPERATOR, value: ADD, label: '+', display: '0' },
 
-  { type: DOT, value: 'decimal', label: '.', display: '0.' },
+  { type: DECIMAL, value: 'decimal', label: '.', display: '0.' },
   { type: DIGIT, value: 2, label: '2', display: '0.2' },
   { type: EQUALS, value: 'result', label: '=', display: '0.2' },
 
